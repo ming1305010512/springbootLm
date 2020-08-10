@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.alsa.configuration.config.MyConfig,\
+  com.alsa.configuration.config.InternationalConfig
+#  ,\com.alsa.configuration.config.ActuatorSecurity
