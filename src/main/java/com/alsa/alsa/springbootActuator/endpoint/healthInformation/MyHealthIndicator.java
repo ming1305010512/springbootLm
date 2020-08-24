@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyHealthIndicator implements HealthIndicator {
 
-    @Value("${myHealthIndicator.status}")
+
     private Integer healthStatus;
 
     @Override

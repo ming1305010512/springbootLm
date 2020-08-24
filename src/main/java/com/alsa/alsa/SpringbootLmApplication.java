@@ -16,7 +16,7 @@ import java.util.EnumSet;
 @RestController
 @SpringBootApplication
 // @EnableConfigurationProperties(AcmeProperties2.class)
-@ConfigurationPropertiesScan("com.alsa.alsa.springbootFeatures")
+@ConfigurationPropertiesScan("com.alsa.alsa")
 public class SpringbootLmApplication {
 
 	// @RequestMapping("/")
@@ -28,6 +28,8 @@ public class SpringbootLmApplication {
 		SpringApplication app = new SpringApplication(SpringbootLmApplication.class);
 		//applicationContext类型，不是web的那种
 		// app.setWebApplicationType(WebApplicationType.NONE);
+		System.setProperty("calculation_mode","GROSS");
+		System.setProperty("gross_calculation_tax_rate","0.15");
 		app.run(args);
 		// SpringApplication.run(SpringbootLmApplication.class, args);
 	}
