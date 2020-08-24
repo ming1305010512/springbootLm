@@ -1,7 +1,11 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.alsa.configuration.config.MyConfig,\
-  com.alsa.configuration.config.InternationalConfig
+  com.alsa.configuration.config.InternationalConfig,\
+  com.alsa.alsa.howToGuides.springbootApplication.customizeTheEnvironmentOrApplicationContextBeforeItStarts.autoConfig.PriceCalculationAutoConfig
 #  ,\com.alsa.configuration.config.ActuatorSecurity
 
 org.springframework.boot.diagnostics.FailureAnalyzer=\
   com.alsa.alsa.howToGuides.springbootApplication.failureAnalyzer.MyBeanNotOfRequiredTypeFailureAnalyzer
+
+org.springframework.boot.env.EnvironmentPostProcessor=\
+    com.alsa.alsa.howToGuides.springbootApplication.customizeTheEnvironmentOrApplicationContextBeforeItStarts.PriceCalculationEnvironmentPostProcessor

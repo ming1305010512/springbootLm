@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,20 +21,19 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @Description:
  */
 @RunWith(SpringRunner.class)
-//@DataJpaTest
-@SpringBootTest(classes = SpringBootStartApplication.class)
-@ComponentScan(value = {"com.alsa"})
+@SpringBootTest(classes = SpringbootLmApplication.class)
+@Sql({"/data.sql"})
 public class EmployeeRepositoryIntegrationTest {
 
 //    @Autowired
 //    private TestEntityManager entityManager;
 
     @Autowired
-    private EndpointService endpointService;
+    private EmployeeRepository employeeRepository;
 
     @Test
     public void whenFindByName_thenReturnEmployee() {
         System.out.println(11);
-        System.out.println(endpointService.readOperationTest("2222"));
+        System.out.println(employeeRepository.findAll());
     }
 }
