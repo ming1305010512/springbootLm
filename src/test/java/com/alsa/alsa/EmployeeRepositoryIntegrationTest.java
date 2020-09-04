@@ -36,4 +36,10 @@ public class EmployeeRepositoryIntegrationTest {
         System.out.println(11);
         System.out.println(employeeRepository.findAll());
     }
+
+    @Test
+    public void save(){
+        Employee employee = new Employee("bbb");
+        employeeRepository.save(employee);
+    }
 }
