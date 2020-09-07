@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springSecurityLm" />
+        <module name="alsa (1)" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="alsa" target="1.8" />
+      <module name="alsa (1)" target="1.8" />
+      <module name="helloworld_security" target="1.8" />
+      <module name="securityLm" target="1.8" />
+      <module name="springSecurityLm" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="alsa (1)" options="-parameters" />
+      <module name="helloworld_security" options="-parameters" />
+      <module name="securityLm" options="-parameters" />
+      <module name="springSecurityLm" options="-parameters" />
+    </option>
+  </component>
+</project>
