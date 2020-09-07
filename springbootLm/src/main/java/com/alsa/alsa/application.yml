@@ -1,0 +1,10 @@
+my:
+  servers:
+    dev.example.com
+    anthor.example.com
+
+name:
+  longming
+
+description:
+  my name is ${name}}
