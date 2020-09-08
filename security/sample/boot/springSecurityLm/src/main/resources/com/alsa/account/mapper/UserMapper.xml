@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alsa.account.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.alsa.account.dto.User">
+        <id column="USER_ID" property="userId" jdbcType="DECIMAL" />
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+        <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
+        <result column="PASSWORD_ENCRYPTED" property="passwordEncrypted" jdbcType="VARCHAR" />
+        <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+        <result column="START_ACTIVE_DATE" property="startActiveDate" javaType="DATE"/>
+        <result column="END_ACTIVE_DATE" property="endActiveDate" javaType="DATE"/>
+        <result column="STATUS" property="status" jdbcType="VARCHAR" />
+        <result column="LAST_PASSWORD_UPDATE_DATE" property="lastPasswordUpdateDate" javaType="DATE"/>
+        <result column="LAST_LOGIN_DATE" property="lastLoginDate" javaType="DATE"/>
+        <result column="FIRST_LOGIN" property="firstLogin" jdbcType="VARCHAR" />
+        <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+        <result column="EMPLOYEE_ID" property="employeeId" jdbcType="DECIMAL" />
+        <result column="EMPLOYEE_CODE" property="employeeCode" jdbcType="VARCHAR" />
+        <result column="EMPLOYEE_NAME" property="employeeName" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="UserResultMap" type="com.alsa.account.dto.User" extends="BaseResultMap">
+        <collection column="ROLE_CODE" property="roleCode" ofType="java.lang.String">
+            <id property="roleCode" column="ROLE_CODE" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        SU.USER_ID, SU.USER_NAME, SU.USER_TYPE, SU.PASSWORD_ENCRYPTED, SU.EMAIL, SU.PHONE, SU.START_ACTIVE_DATE,
+        SU.END_ACTIVE_DATE, SU.STATUS, SU.LAST_PASSWORD_UPDATE_DATE, SU.LAST_LOGIN_DATE, SU.FIRST_LOGIN, SU.DESCRIPTION
+    </sql>
+
+    <select id="selectByUserName" parameterType="java.lang.String" resultMap="UserResultMap">
+        SELECT <include refid="Base_Column_List" />,
+        SU.EMPLOYEE_ID,
+        SR.ROLE_CODE,
+        HE.EMPLOYEE_CODE AS EMPLOYEE_CODE,
+        HE.NAME AS EMPLOYEE_NAME
+        FROM SYS_USER SU
+        LEFT OUTER JOIN SYS_USER_ROLE SUR ON SU.USER_ID = SUR.USER_ID
+        LEFT OUTER JOIN SYS_ROLE_B SR ON SR.ROLE_ID = SUR.ROLE_ID AND SR.ENABLE_FLAG = 'Y'
+        LEFT OUTER JOIN HR_EMPLOYEE HE ON SU.EMPLOYEE_ID = HE.EMPLOYEE_ID
+        WHERE USER_NAME = #{userName,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insertUser" parameterType="com.alsa.account.dto.User">
+        insert into sys_user(USER_ID,USER_NAME,PASSWORD_ENCRYPTED,EMAIL,PHONE,STATUS,CREATED_BY,CREATION_DATE,FIRST_LOGIN,EMPLOYEE_ID)
+        values(#{userId},#{userName},#{passwordEncrypted},#{email},#{phone},#{status},#{createdBy},#{creationDate},#{firstLogin},#{employeeId})
+    </insert>
+</mapper>

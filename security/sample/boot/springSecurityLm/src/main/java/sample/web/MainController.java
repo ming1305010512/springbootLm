@@ -3,6 +3,9 @@ package sample.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Created with IDEA
@@ -30,7 +33,7 @@ public class MainController {
     }
 
     @RequestMapping("/login")
-    public String login() {
+    public String login(HttpServletRequest request) {
         return "login";
     }
 
@@ -38,5 +41,11 @@ public class MainController {
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
         return "login";
+    }
+
+    @RequestMapping("/sys/session/inValid")
+    @ResponseBody
+    public Object sessionInValid(){
+        return "session 失效";
     }
 }

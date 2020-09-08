@@ -1,10 +1,15 @@
 server:
   port: 8080
-#logging:
-#  level:
-#    root: WARN
+logging:
+  level:
+    root: WARN
 #    org.springframework.web: INFO
 #    org.springframework.security: INFO
 spring:
   thymeleaf:
     cache: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: hap_dev
+    password: hap_dev
+    url: jdbc:mysql://39.101.142.80:3306/hap_dev?serverTimezone=UTC
